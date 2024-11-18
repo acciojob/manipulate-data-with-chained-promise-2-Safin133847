@@ -1,4 +1,3 @@
-//your JS code here. If required.
 function getNumbers() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -17,14 +16,14 @@ getNumbers()
 
     setTimeout(() => {
       updateOutput(`Even numbers: ${evenNumbers.join(', ')}`);
-    }, 1000);
+    }, 1000);  
 
-    return evenNumbers;
+    return evenNumbers; 
   })
   .then((evenNumbers) => {
     const doubledNumbers = evenNumbers.map(num => num * 2);
 
     setTimeout(() => {
       updateOutput(`Doubled even numbers: ${doubledNumbers.join(', ')}`);
-    }, 2000);
+    }, 2000); 
   });
