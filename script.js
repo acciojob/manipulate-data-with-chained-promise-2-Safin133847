@@ -2,28 +2,30 @@ function getNumbers() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([1, 2, 3, 4]);
-    }, 3000); 
+    }, 3000);
   });
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function updateOutput(message) {
   document.getElementById('output').textContent = message;
 }
 
-getNumbers()
-  .then((numbers) => {
-    const evenNumbers = numbers.filter(num => num % 2 === 0);
+async function processNumbers() {
+  const numbers = await getNumbers(); 
 
-    setTimeout(() => {
-      updateOutput(`Even numbers: ${evenNumbers.join(', ')}`);
-    }, 1000);  
+  const evenNumbers = numbers.filter(num => num % 2 === 0);
+  
+  await delay(1000); 
+  updateOutput(`Even numbers: ${evenNumbers.join(', ')}`);
+  
+  const doubledNumbers = evenNumbers.map(num => num * 2);
+  
+  await delay(2000);
+  updateOutput(`Doubled even numbers: ${doubledNumbers.join(', ')}`);
+}
 
-    return evenNumbers; 
-  })
-  .then((evenNumbers) => {
-    const doubledNumbers = evenNumbers.map(num => num * 2);
-
-    setTimeout(() => {
-      updateOutput(`Doubled even numbers: ${doubledNumbers.join(', ')}`);
-    }, 2000); 
-  });
+processNumbers();
