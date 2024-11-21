@@ -13,7 +13,7 @@ getNumbers()
         const evenNumbers = numbers.filter((num) => num % 2 === 0);
         document.getElementById("output").textContent = evenNumbers.join(", ");
         resolve(evenNumbers);
-      }, 1000);
+      }, 1000); 
     });
   })
   .then((evenNumbers) => {
