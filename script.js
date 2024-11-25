@@ -1,7 +1,7 @@
 function getNumbers() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve([1, 2, 3, 4]);
+      resolve([1, 2, 3, 4]); 
     }, 3000);
   });
 }
@@ -12,7 +12,7 @@ getNumbers()
       setTimeout(() => {
         const evenNumbers = numbers.filter((num) => num % 2 === 0);
         document.getElementById("output").textContent = evenNumbers.join(", ");
-        resolve(evenNumbers);
+        resolve(evenNumbers); 
       }, 1000); 
     });
   })
@@ -21,8 +21,8 @@ getNumbers()
       setTimeout(() => {
         const multipliedNumbers = evenNumbers.map((num) => num * 2);
         document.getElementById("output").textContent = multipliedNumbers.join(", ");
-        resolve(multipliedNumbers);
+        resolve(multipliedNumbers); 
       }, 2000); 
     });
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err)); 
