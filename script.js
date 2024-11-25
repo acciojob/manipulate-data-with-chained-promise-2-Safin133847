@@ -27,8 +27,8 @@ generateNumbers()
   .then((evenNumbers) => {
     setTimeout(() => {
       updateOutput(evenNumbers.join(', '));
+      return evenNumbers;
     }, 1000);
-    return evenNumbers;
   })
   .then((evenNumbers) => {
     setTimeout(() => {
