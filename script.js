@@ -27,10 +27,10 @@ generateNumbers()
   .then((evenNumbers) => {
     setTimeout(() => {
       updateOutput(evenNumbers.join(', '));
-      return evenNumbers;
     }, 1000);
+    return evenNumbers; // return evenNumbers here
   })
-  .then((evenNumbers) => {
+  .then((evenNumbers) => { // receive evenNumbers here
     setTimeout(() => {
       const multipliedNumbers = multiplyEvenNumbers(evenNumbers);
       updateOutput(multipliedNumbers.join(', '));
