@@ -8,7 +8,7 @@ function getNumbers() {
 
 getNumbers()
   .then((numbers) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         const evenNumbers = numbers.filter((num) => num % 2 === 0);
         document.getElementById("output").textContent = evenNumbers.join(", ");
@@ -17,13 +17,12 @@ getNumbers()
     });
   })
   .then((evenNumbers) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         const multipliedNumbers = evenNumbers.map((num) => num * 2);
-        document.getElementById("output").textContent =
-          multipliedNumbers.join(", ");
+        document.getElementById("output").textContent = multipliedNumbers.join(", ");
         resolve(multipliedNumbers);
-      }, 2000);
+      }, 2000); 
     });
   })
   .catch((err) => console.error(err));
