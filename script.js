@@ -2,17 +2,18 @@ function getNumbers() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve([1, 2, 3, 4]);
-    }, 3000);
+    }, 1000); 
   });
 }
 
 getNumbers()
   .then((numbers) => {
+    document.getElementById("output").textContent = numbers.join(", ");
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const evenNumbers = numbers.filter((num) => num % 2 === 0);
         document.getElementById("output").textContent = evenNumbers.join(", ");
-        resolve(evenNumbers); 
+        resolve(evenNumbers);
       }, 1000); 
     });
   })
@@ -21,8 +22,8 @@ getNumbers()
       setTimeout(() => {
         const multipliedNumbers = evenNumbers.map((num) => num * 2);
         document.getElementById("output").textContent = multipliedNumbers.join(", ");
-        resolve(multipliedNumbers); 
+        resolve(multipliedNumbers);
       }, 2000); 
     });
   })
-  .catch((err) => console.error(err)); 
+  .catch((err) => console.error(err));
