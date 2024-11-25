@@ -8,14 +8,9 @@ function getNumbers() {
 
 getNumbers()
   .then((numbers) => {
-    document.getElementById("output").textContent = numbers.join(", ");
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const evenNumbers = numbers.filter((num) => num % 2 === 0);
-        document.getElementById("output").textContent = evenNumbers.join(", ");
-        resolve(evenNumbers);
-      }, 1000); 
-    });
+    const evenNumbers = numbers.filter((num) => num % 2 === 0);
+    document.getElementById("output").textContent = evenNumbers.join(", ");
+    return evenNumbers;
   })
   .then((evenNumbers) => {
     return new Promise((resolve, reject) => {
