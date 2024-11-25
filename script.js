@@ -1,14 +1,14 @@
 function getNumbers() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve([1, 2, 3, 4]); 
+      resolve([1, 2, 3, 4]);
     }, 3000);
   });
 }
 
 getNumbers()
   .then((numbers) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
         const evenNumbers = numbers.filter((num) => num % 2 === 0);
         document.getElementById("output").textContent = evenNumbers.join(", ");
@@ -17,7 +17,7 @@ getNumbers()
     });
   })
   .then((evenNumbers) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
         const multipliedNumbers = evenNumbers.map((num) => num * 2);
         document.getElementById("output").textContent = multipliedNumbers.join(", ");
