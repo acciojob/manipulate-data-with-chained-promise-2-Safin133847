@@ -1,24 +1,53 @@
+// script.js
+
+// Function that returns a promise resolving with an array of numbers after 3 seconds
 function getNumbers() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve([1, 2, 3, 4]);
-    }, 1000); 
+    }, 3000);
   });
 }
 
+// Function to filter out odd numbers
+function filterOddNumbers(numbers) {
+  return new Promise((resolve) => {
+    const evenNumbers = numbers.filter(num => num % 2 === 0);
+    setTimeout(() => {
+      resolve(evenNumbers);
+    }, 1000);
+  });
+}
+
+// Function to multiply even numbers by 2
+function multiplyByTwo(numbers) {
+  return new Promise((resolve) => {
+    const multipliedNumbers = numbers.map(num => num * 2);
+    setTimeout(() => {
+      resolve(multipliedNumbers);
+    }, 2000);
+  });
+}
+
+// Update the output div with the provided numbers
+function updateOutput(numbers) {
+  const outputDiv = document.getElementById('output');
+  outputDiv.textContent = numbers.join(', ');
+}
+
+// Chain the promises to transform the data and update the DOM
 getNumbers()
-  .then((numbers) => {
-    const evenNumbers = numbers.filter((num) => num % 2 === 0);
-    document.getElementById("output").textContent = evenNumbers.join(", ");
-    return evenNumbers;
-  })
-  .then((evenNumbers) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const multipliedNumbers = evenNumbers.map((num) => num * 2);
-        document.getElementById("output").textContent = multipliedNumbers.join(", ");
-        resolve(multipliedNumbers);
-      }, 2000); 
+  .then(numbers => {
+    return filterOddNumbers(numbers).then(filteredNumbers => {
+      updateOutput(filteredNumbers);
+      return filteredNumbers;
     });
   })
-  .catch((err) => console.error(err));
+  .then(filteredNumbers => {
+    return multiplyByTwo(filteredNumbers).then(multipliedNumbers => {
+      updateOutput(multipliedNumbers);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
